@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body class="blog-post" layout:fragment="content">
+	<div class="wrapper">
+		<div class="page-header page-header-small">
+			<div class="page-header-image" data-parallax="true"
+				style="background-image: url('../assets/img/bg24.jpg');"></div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="wrapper">
+				<div class="row" th:if="${status} == 0">
+					<div class="col-md-12">
+						<div class="alert alert-info" role="alert">
+							<div class="alert-icon">
+								<i class="now-ui-icons travel_info"></i>
+							</div>
+							<strong>Mua Hàng Thành Công - Vui Lòng Chờ Đợi Duyệt Đơn
+								Hàng</strong>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"> <i
+									class="now-ui-icons ui-1_simple-remove"></i>
+								</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" th:if="${status} == 1">
+					<div class="col-md-12">
+						<div class="alert alert-danger" role="alert">
+							<div class="container">
+								<div class="alert-icon">
+									<i class="now-ui-icons objects_support-17"></i>
+								</div>
+								<strong>Có Vẻ Đã Xảy Ra Lỗi - Vui
+									Lòng Liên Hệ Để Được Trợ Giúp</strong>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true"> <i
+										class="now-ui-icons ui-1_simple-remove"></i>
+									</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<a class="btn btn-success btn-lg" th:href="@{/customer/home}">
+							Quay Lại Trang Chủ</a>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

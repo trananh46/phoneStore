@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8">
+<script src="../assets/js/informationUser.js" type="text/javascript"></script>
+</head>
+<body class="landing-page" layout:fragment="content">
+
+
+	<div class="wrapper">
+		<div class="page-header page-header-small">
+			<div class="page-header-image" data-parallax="true"
+				style="background-image: url('../assets/img/bg26.jpg');"></div>
+			<div class="content-center"></div>
+		</div>
+
+
+
+		<div class="section section-contact-us text-center">
+			<div class="container">
+				<h2 class="title">Thông Tin Tài Khoản</h2>
+				<br>
+
+				<form th:action="@{'/customer/update-information-user'}"
+					method="post">
+					<div class="row">
+						<div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
+							<span class="title">Họ Tên</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons users_circle-08"></i>
+								</span> 
+								<input type="hidden" name="idCustomer" th:value="${customerInformation.idCustomer}">
+								<input type="text" class="form-control" placeholder="Họ Tên"
+									th:value="${customerInformation.nameCustomer}"
+									name="nameCustomer" id="nameCustomer">
+							</div>
+							<div style="display: none;" id="error-name-customer">
+								<span style="color: red;" ><b>Không Được Để Trống</b></span> 
+							</div>
+							<br> 
+							<div>
+								<span style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">Thành Phố</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="text" class="form-control"
+									placeholder="Thành Phố Của Bạn"
+									th:value="${customerInformation.city}" name="city">
+							</div>
+							<div>
+								<span style="color: red;">Không Được Để Trống</span> <br> <span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">Quận-Huyện</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="text" class="form-control"
+									placeholder="Quận Huyện Của Bạn"
+									th:value="${customerInformation.district}" name="district">
+							</div>
+							<div>
+								<span style="color: red;display: none;">Không Được Để Trống</span> <br><span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">Phường-Xã</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="text" class="form-control"
+									placeholder="Phường Xã Của Bạn"
+									th:value="${customerInformation.phuongXa}" name="phuongXa">
+							</div>
+							<div>
+								<span style="color: red;">Không Được Để Trống</span> <br> <span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">Địa Chỉ</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="text" class="form-control"
+									placeholder="Quận Huyện Của Bạn"
+									th:value="${customerInformation.address}" name="address">
+							</div>
+							<div>
+								<span style="color: red;">Không Được Để Trống</span> <br> <span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">SĐT</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="text" class="form-control"
+									placeholder="SĐT Của Bạn"
+									th:value="${customerInformation.phoneNumber}"
+									name="phoneNumber">
+							</div>
+							<div>
+								<span style="color: red;">Không Được Để Trống</span> <br> <span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br> <span class="title">Sinh Nhật</span> <br>
+							<div class="input-group input-lg">
+								<span class="input-group-addon"> <i
+									class="now-ui-icons ui-1_email-85"></i>
+								</span> <input type="date" class="form-control"
+									th:value="${customerInformation.birthday}" name="birthday">
+							</div>
+							<div>
+								<span style="color: red;">Không Được Để Trống</span> <br> <span
+									style="color: red;">Không Đúng Định Dạng</span>
+							</div>
+							<br>
+
+							<div class="send-button">
+								<button type="submit"
+									class="btn btn-primary btn-round btn-block btn-lg"
+									onclick="return updateInformation();">Cập Nhật</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				<br> <br>
+				<h2 class="title">Tài Khoản Đăng Nhập</h2>
+				<div class="row">
+					<div class="col-lg-6 text-center ml-auto mr-auto col-md-8">
+						<span class="title">Tài Khoản</span> <br>
+						<div class="input-group input-lg">
+							<span class="input-group-addon"> <i
+								class="now-ui-icons users_circle-08"></i>
+							</span> <input type="hidden" th:value=${account.idAccount}
+								name="idAccount"> <input type="text"
+								class="form-control" placeholder="email"
+								th:value="${account.email}" name="email">
+						</div>
+						<div>
+							<span style="color: red;">Không Được Để Trống</span> <br> <span
+								style="color: red;">Không Đúng Định Dạng</span>
+						</div>
+						<br> <span class="title">Mật Khẩu Cũ</span> <br>
+						<div class="input-group input-lg">
+							<span class="input-group-addon"> <i
+								class="now-ui-icons ui-1_email-85"></i>
+							</span> <input type="text" class="form-control"
+								placeholder="Nhập Mật Khẩu Cũ">
+						</div>
+						<div>
+							<span style="color: red;">Không Được Để Trống</span> <br> <span
+								style="color: red;">Không Đúng Định Dạng</span>
+						</div>
+						<br> <span class="title">Mật Khẩu Mới</span> <br>
+						<div class="input-group input-lg">
+							<span class="input-group-addon"> <i
+								class="now-ui-icons ui-1_email-85"></i>
+							</span> <input type="text" class="form-control" placeholder="Email...">
+						</div>
+						<div>
+							<span style="color: red;">Không Được Để Trống</span> <br> <span
+								style="color: red;">Không Đúng Định Dạng</span>
+						</div>
+						<br>
+
+
+
+						<div class="send-button">
+							<button type="submit"
+								class="btn btn-primary btn-round btn-block btn-lg">Cập
+								Nhật</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

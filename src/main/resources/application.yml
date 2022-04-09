@@ -1,0 +1,14 @@
+server.port: 8081
+
+#config spring data-jpa
+spring:
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: none
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3325/phoneStore
+    username: root
+    password: 
+

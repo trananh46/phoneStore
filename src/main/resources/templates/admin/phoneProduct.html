@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert_phone_product"
+						class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Điện
+						Thoại </a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Tất Cả Điện Thoại</h4>
+							<p class="category">Tất Cả Điện Thoại Sẽ Được Hiển Thị Tại
+								Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">Tên Điện Thoại</th>
+									<th class="text-center">Giá</th>
+									<th class="text-center">Số Lượng</th>
+									<th class="text-center">Trạng Thái</th>
+									<th class="text-center">Tình Trạng Máy</th>
+									<th class="text-center">Image</th>
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="info : ${listPhoneProduct}">
+
+									<tr>
+										<td th:text="*{info.getName_phone_product()}" class="text-center"></td>
+										<td th:text="*{info.getPrice()}" class="text-center"></td>
+										<td th:text="*{info.getQuantity()}" class="text-center"></td>
+										<td th:text="*{info.getName_trang_thai()}" class="text-center"></td>
+										<td th:text="*{info.getName_tinh_trang()}" class="text-center"></td>
+										<td class="text-center"><img th:src="@{${info.getImage()}}" width="200px"
+											height="200px" /></td>
+
+										<td class="text-center"><a
+											th:href="@{'/admin_phone/phone_product_and_phone_product_detail?idPhoneProduct='+${info.getId_phone_product()}}"
+											rel="tooltip" title="Xem"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-mobile"></i>
+										</a> <a
+											th:href="@{'/admin_phone/delete_phone_product?idPhoneProduct='+${info.getId_phone_product()}}"
+											rel="tooltip" title="Sửa"
+											class="btn btn-success btn-simple btn-xs"> <i
+												class="ti-pencil-alt"></i>
+										</a> <a
+											th:href="@{'/admin_phone/lock-phone-product?idPhoneProduct='+${info.getId_phone_product()}}"
+											rel="tooltip" title="Xóa"
+											class="btn btn-danger btn-simple btn-xs"> <i
+												class="ti-close"></i>
+										</a></td>
+
+
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

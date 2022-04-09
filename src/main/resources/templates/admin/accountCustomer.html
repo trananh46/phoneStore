@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Tài Khoản Khách Hàng</h4>
+							<p class="category">Thông Tin Hiển Thị </p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Tài Khoản</th>
+									<th>Họ Tên</th>
+									<th>Email</th>									
+									<th>Password</th>									
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info:${listAccountCustomer}">
+									<tr>
+										<td th:text=${info.id_account}></td>
+										<td th:text=${info.name_customer}></td>
+										<td th:text=${info.email}></td>
+										<td th:text=${info.password}></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a href="" class="btn btn-sm btn-fill">Delete</a> 
+										<a href="" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

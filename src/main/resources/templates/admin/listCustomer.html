@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">DANH SÁCH Khách Hàng</h4>
+							<p class="category">Toàn Bộ Thông Tin Khách Hàng Sẽ Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Khách Hàng</th>
+									<th>Họ Tên</th>
+									<th>Email</th>
+									<th>SĐT</th>									
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info:${listCustomer}">
+									<tr>
+										<td th:text=${info.id_customer}></td>
+										<td th:text=${info.name_customer}></td>
+										<td th:text=${info.email}></td>
+										<td th:text=${info.phone_number}></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{/admin/delete-customer-and-account?idCustomer=}+${info.id_customer}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin/update-customer?idCustomer='+${info.id_customer}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

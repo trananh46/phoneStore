@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert-color" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Màu Điện Thoại</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Bảng Màu Điện Thoại</h4>
+							<p class="category">Màu Sắc Điện Thoại Sẽ Được Hiển Thị Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Color</th>
+									<th>Tên Màu </th>															
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info : ${listColor}">
+								
+									<tr>
+										<td th:text="*{info.idColor}"></td>
+										<td th:text="*{info.nameColor}"></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin_phone/delete-color?idColor='+${info.idColor}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin_phone/update-color?idColor='+${info.idColor}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

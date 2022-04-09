@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">DANH SÁCH HÓA ĐƠN CHƯA DUYỆT</h4>
+							<p class="category">Toàn Bộ Thông Tin Khách Hàng Sẽ Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">ID-Hóa Đơn</th>
+									<th class="text-center">Tên Khách Hàng</th>
+									<th class="text-center">Thời Gian</th>
+									<th class="text-center">Tổng Tiền</th>									
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="listReceiptHasNotApprovedYet:${listReceiptHasNotApprovedYet}">
+									<tr>
+										<td th:text=${listReceiptHasNotApprovedYet.getId_receipt()} class="text-center"></td>
+										<td th:text=${listReceiptHasNotApprovedYet.getName_customer()} class="text-center"></td>
+										<td th:text=${listReceiptHasNotApprovedYet.getDate()} class="text-center"></td>
+										<td th:text="${#numbers.formatDecimal(listReceiptHasNotApprovedYet.getTotal_price_receipt(), 0, 'COMMA', 0, 'POINT')}" class="text-center"></td>
+										<td class="text-center">
+										<a th:href="@{'/admin/list-receipt-detail-by-id-receipt?idReceipt='+${listReceiptHasNotApprovedYet.getId_receipt()}}" class="btn btn-sm btn-fill">Chi Tiết</a> 
+										<a th:href="@{'/admin_phone/delete-receipt?idReceipt='+${listReceiptHasNotApprovedYet.getId_receipt()}}" class="btn btn-sm btn-fill">Xóa Hóa Đơn</a> 
+										<a th:href="@{'/admin_phone/approve-receipt?idReceipt='+${listReceiptHasNotApprovedYet.getId_receipt()}}" class="btn btn-sm btn-fill">Duyệt Hóa Đơn</a> 									
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

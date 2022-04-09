@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a th:href="@{'/admin/insert-staff'}" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm
+						Nhân Viên</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">DANH SÁCH NHÂN VIÊN</h4>
+							<p class="category">Toàn Bộ Thông Tin Nhân Viên Sẽ Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Nhân Viên</th>
+									<th>Họ Tên</th>
+									<th>Email</th>
+									<th>Chức Vụ</th>
+									<th>SĐT</th>									
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info:${listStaff}">
+									<tr>
+										<td th:text=${info.id_staff}></td>
+										<td th:text=${info.name_staff}></td>
+										<td th:text=${info.email}></td>
+										<td><p class="btn btn-primary btn-fill btn-wd" th:text=${info.role_name}></p></td>
+										<td th:text=${info.sdt}></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin/delete-staff-and-account?idStaff='+${info.id_staff}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin/update-staff?idStaff='+${info.id_staff}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

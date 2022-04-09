@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Cập Nhật Thông Tin</h4>
+						</div>
+						<div class="card-content">
+							<form method="post" action="/admin/update-staff-process"
+								class="form-horizontal">
+								 <fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Họ Tên</label>
+										<div class="col-sm-10">
+											<input type="hidden" th:value=${s.getId_staff()} name="id_staff">
+											<input type="text" class="form-control" name="name_staff_update" th:attr="value = ${s.getName_staff()}">
+										</div>
+									</div>
+								</fieldset> 
+								
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Email</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="email_update" th:value=${s.getEmail()}>
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Mật Khẩu</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="password_update" th:value=${s.getPassword()}>
+											
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">SĐT</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" name="sdt_update" th:value=${s.getSdt()}>
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Vị Trí - Chức Vụ</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-sm-6">
+													<select class="selectpicker"
+														data-style="btn btn-danger btn-block"
+														title="" data-size="7" name="id_role_update"
+														>								
+														<option th:value=${s.getId_role()}  th:text=${s.getRole_name} selected></option>
+														<option th:each="list : ${listRole}"
+															th:value="${list.idRole}"
+															th:text="${list.nameRole}"></option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-8">
+										<button class="btn btn-warning btn-fill btn-wd" type="submit">Cập
+											Nhật</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

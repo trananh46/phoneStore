@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert_tinh_trang_san_pham" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Tình Trạng</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Tình Trạng Sản Phẩm</h4>
+							<p class="category">Tình Trạng Của Điện Thoại Sẽ Hiển Thị Tại Đây (Cũ - Mới - Like New)</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Tình Trạng</th>
+									<th>Name-Tình Trạng</th>																
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info : ${listTinhTrangSanPham}">
+								
+									<tr>
+										<td th:text="*{info.idTinhTrangPhoneProduct}"></td>
+										<td th:text="*{info.nameTinhTrang}"></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin_phone/delete_tinh_trang_san_pham?idTinhTrang='+${info.idTinhTrangPhoneProduct}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin_phone/update_tinh_trang_san_pham?idTinhTrang='+${info.idTinhTrangPhoneProduct}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

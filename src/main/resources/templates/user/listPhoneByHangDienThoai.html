@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body class="pricing" layout:fragment="content">
+
+    <div class="wrapper">
+        <div class="page-header page-header-small">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('../assets/img/bg37.jpg') ;">
+            </div>
+            <div class="content-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h1 class="title" th:text="@{'Tìm Kiếm - '+${nameHangDienThoai}}"></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="section">
+                <div class="container">
+      
+                      <nav class="navbar navbar-expand-lg bg-primary">
+                            <div class="container">
+                                <div class="navbar-translate">
+                                    <p class="navbar-brand" style="color: white;" th:text="${nameHangDienThoai}"></p>
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                        data-target="#example-navbar-primary" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-bar bar1"></span>
+                                        <span class="navbar-toggler-bar bar2"></span>
+                                        <span class="navbar-toggler-bar bar3"></span>
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" id="example-navbar-primary">
+                                    <ul class="navbar-nav ml-auto">
+                                       
+                                        <li class="nav-item">
+                                           
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                      
+                     <div class="row">
+                        <div class="col-md-4" th:each="phone: ${listProductCustomer}">
+                            <div class="card card-product card-plain">
+                                <div class="card-image">
+                                	<a th:href="@{'/customer_phone/phone_product_detail?id_phone_product='+${phone.getId_phone_product()}}">
+                                    <img class="img rounded" th:src="@{${phone.getImage()}}"/>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a th:href="@{'/customer_phone/phone_product_detail?id_phone_product='+${phone.getId_phone_product()}}" th:text="${phone.getName_phone_product()}"></a>
+                                    </h4>
+                                    <p class="card-description" th:each="khuyenMai:${listKhuyenMaiByEachPhoneProduct}" th:if="${khuyenMai.getId_phone_product()} == ${phone.getId_phone_product()}" th:text="${khuyenMai.getName_khuyen_mai()}"></p>
+
+                                    <div class="card-footer">
+                                        <div class="price-container">
+                                            <span class="price price-old"></span>
+                                            <span class="price price-new" th:text="${#numbers.formatDecimal(phone.getPrice(), 0, 'COMMA', 0, 'POINT')}" style="margin-left: 100px;font-size: 20px;"></span>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</body>
+
+
+</html>

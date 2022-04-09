@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Tất Cả Điện Thoại Đã Mua</h4>
+							<p class="category">Tất Cả Điện Thoại Đã Mua Sẽ Được Hiển Thị
+								Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">Tên Điện Thoại</th>
+									<th class="text-center">Số Lượng</th>
+									<th class="text-center">Tổng Tiền</th>
+									<th class="text-center">Màu</th>
+									<th class="text-center">Bộ Nhớ</th>
+									<th class="text-center">Ram</th>
+									<th class="text-center">Tình Trạng Máy</th>
+									<th class="text-center">Image</th>
+								</thead>
+								<tbody th:each="info : ${listPhoneProduct}">
+
+									<tr>
+										<td th:text="${info.getName_phone_product()}"
+											class="text-center"></td>
+										<td th:text="${info.getQuantity()}" class="text-center"></td>
+										<td th:text="${info.getTotal_price()}" class="text-center"></td>
+										<td th:text="${info.getName_color()}" class="text-center"></td>
+										<td th:text="${info.getName_memory()}" class="text-center"></td>
+										<td th:text="${info.getName_ram()}" class="text-center"></td>
+										<td th:text="${info.getName_tinh_trang()}" class="text-center"></td>
+										<td class="text-center"><img
+											th:src="@{${info.getImage()}}" width="200px" height="200px" /></td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

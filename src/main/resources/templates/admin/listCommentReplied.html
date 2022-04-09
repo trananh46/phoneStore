@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Bình Luận Đã Trả Lời</h4>
+							<p class="category">Toàn Bộ Bình Luận Đã Trả Lời Của Khách
+								Hàng Sẽ Được Hiển Thị Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">Tên Khách Hàng</th>
+									<th class="text-center">Sản Phẩm</th>
+									<th class="text-center">Bình Luận</th>
+									<th class="text-center">Thời Gian</th>
+									<th class="text-center">Trạng Thái</th>
+									<th class="text-center"></th>
+								</thead>
+								<tbody th:each="listComment:${listComment}">
+									<tr>
+										<td th:text="${listComment.getName_customer()}"
+											class="text-center"></td>
+										<td th:text="${listComment.getName_phone_product()}"
+											class="text-center"></td>
+										<td th:text="${listComment.getContent()}" class="text-center"></td>
+										<td th:text="${listComment.getDate()}" class="text-center"></td>
+										<td class="text-center">
+											<p>
+												Đã Trả Lời <i class="ti-check"></i>
+											</p>
+										</td>
+										<td class="td-actions text-right"><a
+											th:href="@{'/admin/all-comment-detail?id_comment='+${listComment.getId_comment()}}"
+											rel="tooltip" title="Chi Tiết"
+											class="btn btn-info btn-simple btn-xs"> <i
+												class="ti-pencil-alt"></i>
+										</a></td>
+
+
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

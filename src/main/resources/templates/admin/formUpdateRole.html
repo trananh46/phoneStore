@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Thêm Vị Trí-Chức Vụ</h4>
+						</div>
+						<div class="card-content">
+							<form method="get" action="/admin/update-role-process" class="form-horizontal">
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Tên Quyền</label>
+										<div class="col-sm-10">
+											<input type="hidden" class="form-control" th:value="${role.idRole}" name="id_role">
+											<input type="text" class="form-control" th:value="${role.nameRole}" name="name_role_update">
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Code-Quyền</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" th:value="${role.codeRole}" name="code_role_update">
+										</div>
+									</div>
+								</fieldset>
+								<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-8">
+										 <button class="btn btn-warning btn-fill btn-wd" type="submit">Cập Nhật</button> 																						
+									</div>
+								</div>
+
+							</form>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

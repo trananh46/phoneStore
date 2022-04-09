@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+
+			<br>
+			<form th:action="@{'/admin_phone/update-phone-product-process'}" method="post">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Cập Nhật Thông Tin Chi Tiết Điện Thoại</h4>
+						</div>
+						<div class="card-content">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Tên Điện Thoại</label>
+									<div class="col-sm-10">
+										<input type="hidden"
+											th:value=${informationPhoneProduct.getId_phone_product()} name="idPhoneProduct">
+										<input type="text" class="form-control"
+											name="namePhoneProduct"
+											th:value="${informationPhoneProduct.getName_phone_product()}">
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Trạng Thái Bán
+										Của Sản Phẩm</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="trangThaiPhoneProduct">
+													<option
+														th:value="${informationPhoneProduct.getId_trang_thai()}"
+														th:text="${informationPhoneProduct.getName_trang_thai()}"
+														selected="selected"></option>
+													<option th:each="listTrangThaiPhone:${listTrangThaiPhone}"
+														th:value="${listTrangThaiPhone.idTrangThai}"
+														th:text="${listTrangThaiPhone.nameTrangThai}"></option>
+												</select>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+
+
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Giá Tiền</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control"
+											name="price"
+											th:value="${informationPhoneProduct.getPrice()}">
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<input type="hidden" name="phoneProductDetail" th:value="${informationPhoneProduct.getId_phone_product_detail()}">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Hãng Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="hangDienThoai">
+													<option
+														th:value="${informationPhoneProduct.getId_hang_dien_thoai()}"
+														th:text="${informationPhoneProduct.getName_hang_dien_thoai()}"
+														selected="selected"></option>
+													<option th:each="hangDienThoai:${listHangDienThoai}"
+														th:value="${hangDienThoai.idHangDienThoai}"
+														th:text="${hangDienThoai.nameHangDienThoai}"></option>
+												</select>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<input type="hidden" name="idPhoneProductDetail" th:value="${informationPhoneProduct.getId_phone_product_detail()}">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Màu Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="color">
+													<option th:value="${informationPhoneProduct.getId_color()}"
+														th:text="${informationPhoneProduct.getName_color()}"
+														selected="selected"></option>
+													<option th:each="listColor:${listColor}"
+														th:value="${listColor.idColor}"
+														th:text="${listColor.nameColor}"></option>
+												</select>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Số Lượng Sản Phẩm
+										Còn Lại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+												<input type="number" class="form-control"
+													th:value="${informationPhoneProduct.getQuantity()}" name="quantity">
+											</div>
+										</div>
+									</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Ram Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="ram">
+													<option th:value="${informationPhoneProduct.getId_ram()}"
+														th:text="${informationPhoneProduct.getName_ram()}"
+														selected="selected"></option>
+													<option th:each="listRam:${listRam}"
+														th:value="${listRam.idRam}" th:text="${listRam.nameRam}"></option>
+												</select>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Công Nghệ Màn
+										Hình</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="screen">
+													<option
+														th:value="${informationPhoneProduct.getId_screen()}"
+														th:text="${informationPhoneProduct.getTechnology_screen() +'-'+ informationPhoneProduct.getDo_phan_giai()}"
+														selected="selected"></option>
+													<option th:each="listScreen:${listScreen}"
+														th:value="${listScreen.idScreen}"
+														th:text="${listScreen.technologyScreen +'-'+ listScreen.doPhanGiai}"></option>
+												</select>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Dung Lượng Pin
+										Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="battery">
+													<option
+														th:value="${informationPhoneProduct.getId_battery()}"
+														th:text="${informationPhoneProduct.getName_battery()}+' mAh'"
+														selected="selected"></option>
+													<option th:each="listBattery:${listBattery}"
+														th:value="${listBattery.idBattery}"
+														th:text="${listBattery.nameBattery}+' mAh'"></option>
+												</select>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Bộ Nhớ Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="memory">
+													<option
+														th:value="${informationPhoneProduct.getId_memory()}"
+														th:text="${informationPhoneProduct.getName_memory()}"
+														selected="selected"></option>
+													<option th:each="listMemory:${listMemory}"
+														th:value="${listMemory.idMemory}"
+														th:text="${listMemory.nameMemory}"></option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Tình Trạng Máy</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="tinhTrangPhoneProduct">
+													<option
+														th:value="${informationPhoneProduct.getId_tinh_trang_phone_product()}"
+														th:text="${informationPhoneProduct.getName_tinh_trang()}"
+														selected="selected"></option>
+													<option
+														th:each="listTinhTrangPhoneProduct:${listTinhTrangPhoneProduct}"
+														th:value="${listTinhTrangPhoneProduct.idTinhTrangPhoneProduct}"
+														th:text="${listTinhTrangPhoneProduct.nameTinhTrang}"></option>
+												</select>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Camera Máy</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+												<select class="selectpicker"
+													data-style="btn btn-danger btn-block"
+													title="Chọn Trạng Thái Bán Của Sẩn Phẩm" data-size="7"
+													name="camera">
+													<option
+														th:value="${informationPhoneProduct.getId_camera()}"
+														th:text="${informationPhoneProduct.getName_camera()}"
+														selected="selected"></option>
+													<option th:each="listCamera:${listCamera}"
+														th:value="${listCamera.idCamera}"
+														th:text="${listCamera.nameCamera}"></option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+
+									<div class="col-sm-12">
+										<div class="row">
+											<div class="col-sm-4"></div>
+											<div class="col-sm-4">
+												<button type="submit"
+													class="btn btn-wd btn-info btn-fill btn-rotate">Xác
+													Nhận</button>
+											</div>
+											<div class="col-sm-4"></div>
+										</div>
+									</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

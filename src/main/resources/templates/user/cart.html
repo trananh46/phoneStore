@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body class="blog-post" layout:fragment="content">
+	<div class="wrapper">
+		<div class="page-header page-header-small">
+			<div class="page-header-image" data-parallax="true"
+				style="background-image: url('../assets/img/bg24.jpg');"></div>
+			<div class="content-center">
+				<div class="row">
+					<div class="col-md-8 ml-auto mr-auto text-center">
+						<h2 class="title">Giỏ Hàng Của Bạn</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="wrapper">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>
+							<small>Danh Sách Sản Phẩm</small>
+						</h2>
+					</div>
+
+					<div class="col-md-12" th:if="${countPhoneProductInCart != 0}">
+						<div class="card card-plain">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-shopping">
+										<thead class="">
+											<th class="text-center"></th>
+											<th class="text-center">Tên Sản Phẩm</th>
+											<th class="text-center">Màu Sắc</th>
+											<th class="text-center">Bộ Nhớ</th>
+											<th class="text-center">Giá</th>
+											<th class="text-center">Số Lượng</th>
+											<th class="text-center">Tổng Tiền</th>
+										</thead>
+										<tbody>
+											<tr th:each="sanPham : ${listPhoneProductInCart}">
+												<td>
+													<div class="img-container">
+														<img th:src="@{${sanPham.getImage()}}" alt="...">
+													</div>
+												</td>
+												<td class="td-name"><a href="#jacket"
+													th:text="${sanPham.getName_phone_product()}"></a></td>
+												<td th:text="${sanPham.getName_color()}"></td>
+												<td th:text="${sanPham.getName_memory()}"></td>
+												<td class="td-number"
+													th:text="${#numbers.formatDecimal(sanPham.getPrice(), 0, 'COMMA', 0, 'POINT')}"></td>
+												<td class="td-number"><span
+													th:text="${sanPham.getQuantity()}"></span>
+													<div class="btn-group">
+
+														<a
+															th:href="@{'/customer/decrease-quantity-phone-product?id_receipt_detail='+${sanPham.getId_receipt_detail()}+'&id_san_pham='+${sanPham.getId_phone_product()}+'&id_customer='+${sanPham.getId_customer()}}"
+															class="btn btn-info btn-sm"> <i
+															class="now-ui-icons ui-1_simple-delete"></i>
+														</a> <a
+															th:href="@{'/customer/increase-quantity-phone-product?id_receipt_detail='+${sanPham.getId_receipt_detail()}+'&id_san_pham='+${sanPham.getId_phone_product()}+'&id_customer='+${sanPham.getId_customer()}}"
+															class="btn btn-info btn-sm"> <i
+															class="now-ui-icons ui-1_simple-add"></i>
+														</a>
+
+													</div></td>
+												<td class="td-number text-center"
+													th:text="${#numbers.formatDecimal(sanPham.getTotal_price(), 0, 'COMMA', 0, 'POINT')}"></td>
+												<td class="td-actions"><a
+													th:href="@{'/customer_receipt/delete-receipt-detail-by-id?id_receipt_detail='+${sanPham.getId_receipt_detail()}+'&id_customer='+${sanPham.getId_customer()}}"
+													class="btn btn-danger btn-sm">Xóa</a></td>
+											</tr>
+
+											<tr>
+												<td></td>
+												<td class="td-total"></td>
+												<td></td>
+												<td></td>
+												<td class="td-name">Tổng Thanh Toán</td>
+												<td></td>
+												<td class="td-number text-center"
+													th:text="${#numbers.formatDecimal(totalPriceProjectionOfReceipt.getTotalPriceProjectionReceipt(), 0, 'COMMA', 0, 'POINT')}+${'đ'}"></td>
+											</tr>
+
+											<tr>
+												<td colspan="3"></td>
+												<td class="td-total"></td>
+												<td class="td-price"></td>
+												<td colspan="3" class="text-center"><a th:href="@{'/customer_receipt/update-receipt-by-id?id_customer='+${customer.getId_customer()}}"
+													class="btn btn-info btn-round "> Tiến Hành Thanh Toán <i
+														class="now-ui-icons arrows-1_minimal-right"></i>
+												</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-info" role="alert"
+							th:if="${countPhoneProductInCart == 0}">
+
+							<div class="alert-icon">
+								<i class="now-ui-icons travel_info"></i>
+							</div>
+							<strong>Giỏ Hàng Của Bạn Đang Trống</strong>
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true"> <i
+									class="now-ui-icons ui-1_simple-remove"></i>
+								</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

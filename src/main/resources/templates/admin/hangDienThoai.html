@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert_hang_dien_thoai" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Hãng Điện Thoại </a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Hãng Điện Thoại</h4>
+							<p class="category">Các Hãng Của Điện Thoại Sẽ Hiển Thị Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Hãng</th>
+									<th>Tên Hãng</th>	
+									<th>Image</th>												
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info : ${listHangDienThoai}">
+								
+									<tr>
+										<td th:text="*{info.idHangDienThoai}"></td>
+										<td th:text="*{info.nameHangDienThoai}"></td>
+										<td>
+											<img th:src="@{${info.image}}" width="200px" height="200px"/>
+										</td>
+										
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin_phone/delete_hang_dien_thoai?idHangDienThoai='+${info.idHangDienThoai}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin_phone/update_hang_dien_thoai?idHangDienThoai='+${info.idHangDienThoai}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

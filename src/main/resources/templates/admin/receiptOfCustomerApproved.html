@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">DANH SÁCH HÓA ĐƠN ĐÃ DUYỆT</h4>
+							<p class="category">Toàn Bộ Thông Tin Khách Hàng Sẽ Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Hóa Đơn</th>
+									<th>Tên Khách Hàng</th>
+									<th>Thời Gian</th>
+									<th>Tổng Tiền</th>									
+									<th>Action</th>
+								</thead>
+								<tbody th:each="listReceiptApproved:${listReceiptApproved}">
+									<tr>
+										<td th:text=${listReceiptApproved.getId_receipt()}></td>
+										<td th:text=${listReceiptApproved.getName_customer()}></td>
+										<td th:text=${listReceiptApproved.getDate()}></td>
+										<td th:text="${#numbers.formatDecimal(listReceiptApproved.getTotal_price_receipt(), 0, 'COMMA', 0, 'POINT')}"></td>
+										<td>
+										<a th:href="@{'/admin/list-receipt-detail-by-id-receipt?idReceipt='+${listReceiptApproved.getId_receipt()}}" class="btn btn-sm btn-fill">Chi Tiết</a> 
+										<a th:href="@{'/admin_phone/delete-receipt?idReceipt='+${listReceiptApproved.getId_receipt()}}" class="btn btn-sm btn-fill">Xóa Hóa Đơn</a> 									
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

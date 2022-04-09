@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert_gioi_thieu" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Bài Giới Thiệu </a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Bài Viết Giới Thiệu Điện Thoại</h4>
+							<p class="category">Các Bài Viết Sẽ Được Hiển Thị Trong Điện Thoại Cùng Loại</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Giới Thiệu</th>
+									<th>Title</th>	
+									<th>Loại Điện Thoại</th>				
+									<th>Image</th>								
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info : ${listGioiThieu}">
+								
+									<tr>
+										<td th:text="*{info.idGioiThieu}"></td>
+										<td th:text="*{info.title}"></td>
+										<td th:text="*{info.loaiDienThoai}"></td>
+										<td>
+											<img th:src="@{${info.image}}" width="200px" height="200px"/>
+										</td>
+										
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin_phone/delete_gioi_thieu?idGioiThieu='+${info.idGioiThieu}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin_phone/update_gioi_thieu?idGioiThieu='+${info.idGioiThieu}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<a href="/admin_phone/insert_khuyen_mai" class="btn btn-wd btn-info btn-fill btn-rotate">Thêm
+						Khuyến Mại</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Khuyến Mại</h4>
+							<p class="category">Tất Cả Khuyến Mại Về Điện Thoại Sẽ Hiển Thị Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th>ID-Khuyến Mại</th>
+									<th>Tên Khuyến Mại </th>																	
+									<th>Action</th>
+								</thead>
+								<tbody th:each="info : ${listKhuyenMai}">
+								
+									<tr>
+										<td th:text="*{info.idKhuyenMai}"></td>
+										<td th:text="*{info.nameKhuyenMai}"></td>
+										<td>
+										<a href="" class="btn btn-sm btn-fill">See</a>
+										<a th:href="@{'/admin_phone/delete_khuyen_mai?idKhuyenMai='+${info.idKhuyenMai}}" class="btn btn-sm btn-fill">Delete</a> 
+										<a th:href="@{'/admin_phone/update_khuyen_mai?idKhuyenMai='+${info.idKhuyenMai}}" class="btn btn-sm btn-fill">Update</a>										
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

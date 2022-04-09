@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="card-header">
+									<h3 class="card-title">Thống Kê Sản Phẩm</h3>
+								</div>
+							</div>
+							<div class="col-md-4"></div>
+							<div class="col-md-2"></div>
+						</div>
+
+						<div class="card-content">
+							<div class="row">
+								<div class="col-md-2"></div>
+								
+								<div class="col-md-4">
+									<div class="card-header">
+										<h6>Theo Hãng Điện Thoại</h6>
+									</div>
+									<div>
+										<div class="dropdown">
+											<button href="#" class="btn btn-block dropdown-toggle"
+												data-toggle="dropdown">
+												----- <b class="caret"></b>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a th:href="@{'/admin/display-statistic-by-kind-of-phone'}">Tất Cả</a></li>
+												<li th:each="hangDienThoai:${hangDienThoai}"><a th:href="@{'/admin/list-phone-product-by-id-hang-dien-thoai?id_hang_dien_thoai='+${hangDienThoai.idHangDienThoai}}" th:text="${hangDienThoai.nameHangDienThoai}"></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="card-header">
+										<h6>Thời Gian</h6>
+									</div>
+									<div>
+										<div class="dropdown">
+											<button href="#" class="btn btn-block dropdown-toggle"
+												data-toggle="dropdown">
+												----- <b class="caret"></b>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a th:href="@{'/admin/statistic-phone-product'}">Years</a></li>
+												<li th:each="years:${years}"><a th:href="@{'/admin/statistic-phone-product-by-every-month?id_year='+${years.getYears()}}" th:text="${years.getYears()}"></a></li>
+												
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2"></div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<br>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Doanh Thu Theo Năm</h4>
+							<p class="category">Tổng Doanh Thu Theo Từng Năm Sẽ Hiển Thị Tại Đây</p>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">Thời Gian - Năm</th>
+									<th class="text-center">Tổng Doanh Thu</th>
+									<th class="text-center">Số Sản Phẩm Bán Được</th>
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="listStatisticBudgetYear : ${listStatisticBudgetYear}">
+
+									<tr>
+										<td class="text-center"><h3 th:text="*{listStatisticBudgetYear.getTime()}"></h3></td>
+										<td class="text-center"><h3 th:text="*{listStatisticBudgetYear.getTotalMoney()}"></h3></td>
+										<td class="text-center"><h3 th:text="*{listStatisticBudgetYear.getQuantity()}"></h3></td>
+										<td class="text-center"><a th:href="@{'/admin/statistic-phone-product-by-every-month?id_year='+${listStatisticBudgetYear.getTime()}}" class="btn btn-sm btn-fill">Chi Tiết</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

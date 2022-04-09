@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="user/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body class="blog-post" layout:fragment="content">
+	<div class="wrapper">
+		<div class="page-header page-header-small">
+			<div class="page-header-image" data-parallax="true"
+				style="background-image: url('../assets/img/bg32.jpg');"></div>
+			<div class="content-center">
+				<div class="row">
+					<div class="col-md-8 ml-auto mr-auto">
+						<h1 class="title">Kiểm Tra Đơn Hàng Của Bạn</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section section-tabs">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<ul class="nav nav-tabs justify-content-center" role="tablist">
+								<li class="nav-item"><a class="nav-link "
+									
+									th:href="@{'/customer/display-check-order?idCustomer='+${customer.getId_customer()}}"
+									role="tab"> <i class="now-ui-icons objects_umbrella-13"></i>
+										Đang Chờ Xử Lý
+								</a></li>
+										<li class="nav-item"><a class="nav-link active"
+									th:href="@{'/customer/display-check-order-payed?idCustomer='+${customer.getId_customer()}}" role="tab"> <i
+										class="now-ui-icons shopping_shop"></i> Đã Thanh Toán
+								</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab"
+									href="#profile" role="tab"> <i
+										class="now-ui-icons shopping_cart-simple"></i> Đang Giao
+								</a></li>		
+								<li class="nav-item"><a class="nav-link" data-toggle="tab"
+									href="#settings" role="tab"> <i
+										class="now-ui-icons ui-2_settings-90"></i> Đã Bị Hủy
+								</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" th:if="${sizeListReceipt} != 0">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card card-plain">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-shopping">
+								<thead class="">
+									<th class="text-center"></th>
+									<th class="text-center">Tên Sản Phẩm</th>
+									<th class="text-center">Màu Sắc</th>
+									<th class="text-center">Bộ Nhớ</th>
+									<th class="text-center">Ram</th>
+									<th class="text-center">Số Lượng</th>
+									<th class="text-center">Tổng Tiền</th>
+									<th class="text-center">Tình Trạng</th>
+								</thead>
+								<tbody>
+									<tr
+										th:each="listReceiptApproved : ${listReceiptApproved}">
+										<td class="text-center">
+											<div class="img-container">
+												<img th:src="@{${listReceiptApproved.getImage()}}"
+													alt="...">
+											</div>
+										</td>
+										<td class="text-center"><a href="#jacket"
+											th:text="${listReceiptApproved.getName_phone_product()}"></a></td>
+										<td th:text="${listReceiptApproved.getName_color()}" class="text-center"></td>
+										<td th:text="${listReceiptApproved.getName_memory()}" class="text-center"></td>
+										<td th:text="${listReceiptApproved.getName_ram()}" class="text-center"></td>
+										<td th:text="${listReceiptApproved.getQuantity()}" class="text-center"></td>
+										<td class="text-center"
+											th:text="${#numbers.formatDecimal(listReceiptApproved.getTotal_price(), 0, 'COMMA', 0, 'POINT')}"></td>
+										<td
+											th:text="${listReceiptApproved.getName_tinh_trang()}" class="text-center"></td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+	</div>
+</body>
+</html>

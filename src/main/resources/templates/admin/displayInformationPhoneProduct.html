@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-10"></div>
+				<div class="col-md-2">
+					<div class="row">
+						<a
+							th:href="@{'/admin_phone/update-phone-product?id_phone_product='+${informationPhoneProduct.getId_phone_product()}}"
+							class="btn btn-wd btn-info btn-fill btn-rotate">Sửa Thông Tin
+						</a>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row" th:if="${informationPhoneProduct.getTrang_thai()} == 0">
+						<div class="col-md-12">
+							<div class="alert alert-danger">
+								<button type="button" aria-hidden="true" class="close">×</button>
+								<span><b> Sản Phẩm Đã Bị Xóa </b></span>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Thông Tin Chi Tiết Điện Thoại</h4>
+						</div>
+						<div class="card-content">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Tên Điện Thoại</label>
+									<div class="col-sm-10">
+										<input type="hidden"
+											th:value=${informationPhoneProduct.getId_phone_product()}>
+										<input type="text" class="form-control"
+											name="name_staff_update"
+											th:attr="value = ${informationPhoneProduct.getName_phone_product()}"
+											readonly="readonly">
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Trạng Thái Bán
+										Của Sản Phẩm</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_trang_thai()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Giá Tiền</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control"
+											name="name_staff_update"
+											th:attr="value = ${informationPhoneProduct.getPrice}"
+											readonly="readonly">
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Hãng Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_hang_dien_thoai()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Màu Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_color()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Số Lượng Sản Phẩm
+										Còn Lại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+												<input type="number" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getQuantity()}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Ram Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_ram()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Công Nghệ Màn
+										Hình</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getTechnology_screen() +'-'+ informationPhoneProduct.getDo_phan_giai()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Dung Lượng Pin
+										Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_battery()}+' mAH'"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Bộ Nhớ Điện Thoại</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_memory()}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Tình Trạng Máy</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_tinh_trang()}"
+													readonly="readonly">
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Camera Máy</label>
+									<div class="col-sm-10">
+										<div class="row">
+											<div class="col-sm-12">
+
+
+												<input type="text" class="form-control"
+													th:attr="value = ${informationPhoneProduct.getName_camera()}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<div class="row">
+								<a
+									th:href="@{'/admin_phone/form_insert_image_phone_product?idPhoneProduct='+${informationPhoneProduct.getId_phone_product()}}"
+									class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Ảnh
+									Chi Tiết </a>
+							</div>
+						</div>
+					</div>
+					<br> <br>
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Các Ảnh Chi Tiết Điện Thoại</h4>
+						</div>
+
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+
+									<th class="text-center">Image</th>
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="info : ${listImage}">
+
+									<tr>
+
+										<td class="text-center"><img
+											th:src="@{${info.getImage()}}" width="200px" height="200px" /></td>
+										<td class="text-center"><a
+											th:href="@{'/admin_home/delete_image_phone_product?idImagePhoneProduct='+${info.getId_image_phone_product()}}"
+											class="btn btn-sm btn-fill">Delete</a> <a
+											th:href="@{'/admin_home/update_image_phone_product?idImagePhoneProduct='+${info.getId_image_phone_product()}}"
+											class="btn btn-sm btn-fill">Update</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-md-9"></div>
+						<div class="col-md-3">
+							<div class="row">
+								<a
+									th:href="@{'/admin_phone/khuyen_mai_phone_product_detail?idPhoneProduct='+${informationPhoneProduct.getId_phone_product()}}"
+									class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Khuyến
+									Sản Phẩm</a>
+							</div>
+						</div>
+					</div>
+					<br> <br>
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Các Khuyến Mãi Của Sản Phẩm</h4>
+						</div>
+
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+
+									<th class="text-center">Tên Khuyến Mãi</th>
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="info : ${listKhuyenMaiPhone}">
+
+									<tr>
+
+										<td th:text="${info.getName_khuyen_mai()}" class="text-center"></td>
+										<td class="text-center"><a
+											th:href="@{'/admin_home/delete_khuyen_mai_phone_product?idKhuyenMaiPhoneProduct='+${info.getId_khuyen_mai_phone()}}"
+											class="btn btn-sm btn-fill">Delete</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-9"></div>
+						<div class="col-md-3">
+							<div class="row">
+								<a
+									th:href="@{'/admin_phone/insert_gioi_thieu_phone_product_detail?idPhoneProduct='+${informationPhoneProduct.getId_phone_product()}+'&hangDienThoai='+${informationPhoneProduct.getName_hang_dien_thoai()}}"
+									class="btn btn-wd btn-info btn-fill btn-rotate">Thêm Bài
+									Giới Thiệu</a>
+							</div>
+						</div>
+					</div>
+					<br> <br>
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Bài Giới Thiệu Sản Phẩm</h4>
+						</div>
+						<div class="card-content table-responsive table-full-width">
+							<table class="table table-striped">
+								<thead>
+									<th class="text-center">Title</th>
+									<th class="text-center">Post</th>
+									<th class="text-center">Image</th>
+									<th class="text-center">Action</th>
+								</thead>
+								<tbody th:each="info : ${listGioiThieuPhoneProductDetail}">
+
+									<tr>
+										<td th:text="*{info.getTitle()}" class="text-center"></td>
+										<td th:text="*{info.getPost()}" class="text-center"></td>
+										<td class="text-center"><img
+											th:src="@{${info.getImage()}}" width="100px" height="100px" /></td>
+
+										<td class="text-center"><a
+											th:href="@{'/admin_phone/delete_gioi_thieu_phone_detail?id_gioi_thieu_phone='+${info.getId_gioi_thieu_phone_product()}}"
+											class="btn btn-sm btn-fill">Xóa</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

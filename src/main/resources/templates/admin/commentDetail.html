@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/mainLayout">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content" layout:fragment="content">
+		<div class="container-fluid">
+			<div class="card card-chat">
+				<div class="card-header">
+					<h4 class="card-title"
+						th:text="${maintComment.getName_phone_product()}"></h4>
+					<p class="category">Bình Luận Của Khách Hàng</p>
+				</div>
+				<div class="card-content">
+					<ol class="chat">
+
+
+
+						<li class="other">
+
+							<div class="avatar">
+								<img src="/images/default-avatar.png" alt="crash" />
+							</div>
+							<div class="msg">
+								<h5 th:text="${maintComment.getName_customer()}"></h5>
+								<p th:text="${maintComment.getContent()}"></p>
+								<div class="card-footer">
+									<a th:href="@{'/admin/delete-main-comment-by-id?id_comment='+${maintComment.getId_comment()}}" rel="tooltip" title="Xóa Bình Luận"
+										class="btn btn-danger btn-simple btn-xs"> <i
+										class="ti-close"></i>
+									</a>
+									<h6 th:text="${maintComment.getDate()}"></h6>
+								</div>
+							</div>
+						</li>
+
+
+
+						<li class="self" th:each="secondComment:${secondComment}">
+							<div class="msg">
+								<h5 th:text="${secondComment.getName_staff()}"></h5>
+								<p th:text="${secondComment.getContent()}"></p>
+								<div class="card-footer">
+									<a th:href="@{'/admin/delete-second-comment-by-id?id_second_comment='+${secondComment.getId_comment()}+'&id_main_comment='+${secondComment.getId_comment_detail()}}" rel="tooltip" title="Xóa Bình Luận"
+										class="btn btn-danger btn-simple btn-xs"> <i
+										class="ti-close"></i>
+									</a>
+									<h6 th:text="${secondComment.getDate()}"></h6>
+								</div>
+							</div>
+							<div class="avatar">
+								<img src="/images/logo.png" alt="crash" />
+							</div>
+						</li>
+
+
+					</ol>
+					<hr>
+					<form th:action="@{'/admin/reply-comment-of-customer'}">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<div class="send-message">
+									<div class="avatar">
+										<img src="/images/logo.png" alt="crash" />
+									</div>
+									<input class="form-control textarea" type="text"
+										placeholder="Trả Lời Bình Luận" name="content" /> <input
+										type="hidden" name="idCommentDetail"
+										th:value="${maintComment.getId_comment()}"> <input
+										type="hidden" name="staff" th:value="${staff.getId_staff()}">
+									<input type="hidden" name="phoneProduct"
+										th:value="${maintComment.getId_phone_product()}">
+
+									<div class="send-button">
+										<button class="btn btn-primary btn-fill">Gửi Bình
+											Luận</button>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
